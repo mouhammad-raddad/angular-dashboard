@@ -1,0 +1,147 @@
+<div [ngClass]="{ 'w-24': isOpen, 'w-xs': !isOpen }"
+     class="transition-all duration-300 ease-in-out lg:flex hidden
+     bg-[#10141A] text-white h-full  flex-col">
+  <!-- Logo -->
+  <a class="flex items-center justify-center p-4 pt-4" routerLink="/dashboard"
+     routerLinkActiveOptions="{ exact: true }">
+    <img alt="logo" height="72" ngSrc="assets/svg/logo.svg" width="154">
+  </a>
+
+  <div>
+    <a (click)="toggleSidebar()" class="flex items-center justify-center bg-[#1F1D2B] cursor-pointer h-8"><i
+      class="icid-list text-[#9E9BAD] text-lg"></i></a>
+  </div>
+
+  <!-- Navigation -->
+  <nav [ngClass]="{ 'flex flex-col justify-center': isOpen }" class="flex-1 py-4">
+    @for (item of menuItems; track $index) {
+      <!-- Parent Menu Item -->
+      <a
+        [routerLink]="item.path"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="link-active"
+        (click)="item.children && toggleItem(item)"
+        [ngClass]="{ 'justify-center': isOpen }"
+        class="flex items-center mb-2 p-2 rounded-lg transition-colors hover:bg-gray-700"
+      >
+        <i
+          class="w-8 h-8 flex items-center justify-center bg-[#252836] text-[#706D7E] rounded-[10px] text-2xl"
+          [class]="'icid-'+item.icon"
+        ></i>
+        <span class="mx-6" [ngClass]="{ '!hidden': isOpen }">{{ item.label }}</span>
+      </a>
+
+      <!-- Child Items (if exists and expanded) -->
+      @if (item.children && item.children.length > 0 && item.expanded) {
+        <div class="px-8">
+          @for (child of item.children; track $index) {
+            <a
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="child.path"
+              [ngClass]="{ 'justify-center': isOpen }"
+              routerLinkActive="link-active"
+              class="flex items-center mb-2 p-2 rounded-lg transition-colors hover:bg-gray-700"
+            >
+              <i
+                class="w-8 h-8 flex items-center justify-center bg-[#252836] text-[#706D7E] rounded-[10px] text-2xl"
+                [class]="'icid-'+child.icon"
+              ></i>
+              <span class="mx-6" [ngClass]="{ '!hidden': isOpen }">{{ child.label }}</span>
+            </a>
+          }
+        </div>
+      }
+    }
+  </nav>
+
+  <!-- User Profile -->
+  <div class="p-4">
+    <div [ngClass]="{ 'justify-center': isOpen}" class="flex items-center">
+      <img
+        alt="Profile"
+        class="w-10 h-10 rounded-[15px] border-2 border-[#464353]"
+        height="200"
+        ngSrc="assets/svg/profile.svg" width="200"/>
+      <div [ngClass]="{ 'hidden': isOpen }" class="mx-3">
+        <p class="text-sm font-medium">John Doe</p>
+        <p class="text-xs text-gray-400">Admin</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flex flex-col bg-[#10141A] px-6 rounded-b-2xl">
+  <div class="lg:hidden flex items-center justify-between">
+    <!-- Logo -->
+    <a class="flex items-center justify-center p-4 mt-4" routerLink="/dashboard"
+       routerLinkActiveOptions="{ exact: true }">
+      <img alt="logo" height="64" ngSrc="assets/svg/logo-sm.svg" width="64">
+    </a>
+
+    <div class="flex items-center gap-6">
+      <img
+        [ngClass]="{ '!hidden': !isMenuOpen }"
+        alt="Profile"
+        class="w-10 h-10 rounded-[15px] border-2 border-[#464353]" height="200"
+        ngSrc="assets/svg/profile.svg" width="200"/>
+      <div>
+        <a (click)="toggleMenu()" class="flex items-center justify-center cursor-pointer h-8"><i
+          class="icid-menu text-[#9E9BAD] text-3xl"></i></a>
+      </div>
+    </div>
+  </div>
+  <!-- Navigation -->
+  <nav [ngClass]="{ '!hidden': isMenuOpen }" class="p-4">
+    @for (item of menuItems; track $index) {
+      <!-- Parent Menu Item -->
+      <a
+        [routerLink]="item.path"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="link-active"
+        (click)="item.children && toggleItem(item)"
+        [ngClass]="{ 'justify-center': isOpen }"
+        class="flex items-center mb-2 p-2 rounded-lg transition-colors hover:bg-gray-700"
+      >
+        <i
+          class="w-8 h-8 flex items-center justify-center bg-[#252836] text-[#706D7E] rounded-[10px] text-2xl"
+          [class]="'icid-'+item.icon"
+        ></i>
+        <span class="mx-6" [ngClass]="{ '!hidden': isOpen }">{{ item.label }}</span>
+      </a>
+
+      <!-- Child Items (if exists and expanded) -->
+      @if (item.children && item.children.length > 0 && item.expanded) {
+        <div class="px-8">
+          @for (child of item.children; track $index) {
+            <a
+              [routerLinkActiveOptions]="{ exact: true }"
+              [routerLink]="child.path"
+              [ngClass]="{ 'justify-center': isOpen }"
+              routerLinkActive="link-active"
+              class="flex items-center mb-2 p-2 rounded-lg transition-colors hover:bg-gray-700"
+            >
+              <i
+                class="w-8 h-8 flex items-center justify-center bg-[#252836] text-[#706D7E] rounded-[10px] text-2xl"
+                [class]="'icid-'+child.icon"
+              ></i>
+              <span class="mx-6" [ngClass]="{ '!hidden': isOpen }">{{ child.label }}</span>
+            </a>
+          }
+        </div>
+      }
+    }
+  </nav>
+  <!-- User Profile -->
+  <div [ngClass]="{ '!hidden': isMenuOpen }" class="p-4">
+    <div class="flex items-center">
+      <img
+        alt="Profile"
+        class="w-10 h-10 rounded-[15px] border-2 border-[#464353]"
+        height="200"
+        ngSrc="assets/svg/profile.svg" width="200"/>
+      <div class="mx-3">
+        <p class="text-sm font-medium">John Doe</p>
+        <p class="text-xs text-gray-400">Admin</p>
+      </div>
+    </div>
+  </div>
+</div>

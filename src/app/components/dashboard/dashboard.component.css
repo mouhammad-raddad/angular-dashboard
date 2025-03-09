@@ -1,0 +1,24 @@
+.progress-circle {
+  animation: progress 1s ease-in-out forwards;
+}
+
+@keyframes progress {
+  from {
+    stroke-dashoffset: 251.2;
+  }
+}
+
+.percentage-text {
+  animation: percentage 1s ease-in-out forwards;
+}
+
+@keyframes percentage {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

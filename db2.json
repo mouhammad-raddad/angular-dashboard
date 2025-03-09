@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Ahmed",
+      "middleName": "Jasim",
+      "lastName": "Ali",
+      "email": "Ahmed.Ali@Company.com",
+      "phone": "+974 3333 4444",
+      "rfid": "12345",
+      "role": "Super Admin",
+      "department": "Fire Fighter",
+      "fleet": ""
+    }
+  ]
+}

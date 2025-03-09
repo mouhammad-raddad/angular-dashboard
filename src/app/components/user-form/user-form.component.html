@@ -1,0 +1,189 @@
+<div class="flex items-center justify-between
+text-[#CECBDE] border-b border-[#464353] pb-3 mb-6">
+  <a class="flex items-center" routerLink="/">
+    <i class="icid-arrow-back text-2xl"></i>
+    <div class="mx-6">
+      <div class="text-sm font-bold">Add User</div>
+      <div class="">Organization</div>
+    </div>
+  </a>
+  <div class=" flex flex-wrap items-center ">
+    <button
+      class="cancel-button"
+      routerLink="/"
+    ><i class="icid-close text-lg"></i> Cancel
+    </button>
+    <button
+      (click)="save()"
+      class="save-button"
+    ><i class="icid-check text-lg"></i> Save
+    </button>
+  </div>
+</div>
+<div class="lg:w-1/2 w-full mx-auto text-[#CECBDE]">
+
+  <form [formGroup]="userForm" class="space-y-4">
+    <div class="flex items-center justify-center">
+      <img alt="profile" height="200" src="./assets/svg/profile.svg" width="200">
+    </div>
+
+    <p-fileUpload
+      (onUpload)="onUpload($event)"
+      accept="image/*"
+      chooseIcon="icid-camera"
+      chooseLabel="Update Image"
+      class="uploader"
+      mode="basic"></p-fileUpload>
+
+
+    <div class="flex flex-wrap gap-2 mt-10">
+      <!-- First Name -->
+      <div class="flex flex-col grow">
+        <label class="text-gray-400 mb-2">First Name *</label>
+        <input class="w-full bg-[#1F1D2B] border-none text-white placeholder:text-gray-500 rounded-md p-3"
+               formControlName="firstName"
+               pInputText
+               placeholder="Ahmed"
+        />
+        @if (userForm.get('firstName')?.invalid && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)) {
+          <small
+            class="text-red-500"
+          >
+            First name is required
+          </small>
+        }
+      </div>
+
+      <!-- Middle Name -->
+      <div class="flex flex-col grow">
+        <label class="text-gray-400 mb-2">Middle Name</label>
+        <input
+          class="w-full bg-[#1F1D2B] border-none text-white placeholder:text-gray-500 rounded-md p-3"
+          formControlName="middleName"
+          pInputText
+          placeholder="Jasim"
+        />
+      </div>
+
+      <!-- Last Name -->
+      <div class="flex flex-col grow">
+        <label class="text-gray-400 mb-2">Last Name *</label>
+        <input
+          class="w-full bg-[#1F1D2B] border-none text-white placeholder:text-gray-500 rounded-md p-3"
+          formControlName="lastName"
+          pInputText
+          placeholder="Ali"
+        />
+        @if (userForm.get('lastName')?.invalid && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)) {
+          <small
+            class="text-red-500"
+          >
+            Last name is required
+          </small>
+        }
+
+      </div>
+
+    </div>
+    <!-- Email -->
+    <div class="flex flex-col">
+      <label class="text-gray-400 mb-2">Email *</label>
+      <p-iconfield>
+        <p-inputicon styleClass="icid-email"/>
+        <input
+          class="w-full bg-[#1F1D2B] border-none text-white placeholder:text-gray-500 rounded-md p-3"
+          formControlName="email"
+          pInputText
+          placeholder="Ahmed.Ali@Company.com"
+        /></p-iconfield>
+      @if (userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)) {
+
+        <small
+          class="text-red-500"
+        >
+          Enter a valid email
+        </small>
+      }
+
+    </div>
+
+    <!-- Phone -->
+    <div class="flex flex-col">
+      <label class="text-gray-400 mb-2">Phone</label>
+      <p-iconfield>
+        <p-inputicon styleClass="icid-phone"/>
+        <input
+          class="w-full bg-[#1F1D2B] border-none text-white placeholder:text-gray-500 rounded-md p-3"
+          formControlName="phone"
+          pInputText
+          placeholder="+974 3333 4444"
+        /></p-iconfield>
+    </div>
+
+    <!-- RFID -->
+    <div class="flex flex-col">
+      <label class="text-gray-400 mb-2 flex items-center gap-2">RFID
+        <p-toggleswitch ariaLabel="Remember Me" formControlName="checked" size=""/>
+      </label>
+
+
+      <input
+        class="w-full bg-[#1F1D2B] border-none text-white placeholder:text-gray-500 rounded-md p-3"
+        formControlName="rfid"
+        pInputText placeholder="12345"
+      />
+    </div>
+
+    <!-- Role -->
+    <div class="flex flex-col">
+      <label class="text-gray-400 mb-2">Role *</label>
+      <p-select
+        [options]="roles"
+        class="w-full bg-[#1F1D2B] border-none text-white placeholder:text-gray-500 rounded-md p-3"
+        formControlName="role" optionLabel="label"
+        optionValue="value"
+        pInputText
+      />
+      @if (userForm.get('role')?.invalid && (userForm.get('role')?.dirty || userForm.get('role')?.touched)) {
+        <small
+          class="text-red-500"
+        >
+          Role is required
+        </small>
+      }
+
+    </div>
+
+    <!-- Department -->
+    <div class="flex flex-col">
+      <label class="text-gray-400 mb-2">Department *</label>
+      <p-select
+        [options]="departments"
+        class="w-full bg-[#1F1D2B] border-none text-white placeholder:text-gray-500 rounded-md p-3"
+        formControlName="department"
+        optionLabel="label"
+        optionValue="value"
+      />
+      @if (userForm.get('department')?.invalid && (userForm.get('department')?.dirty || userForm.get('department')?.touched)) {
+        <small
+          class="text-red-500"
+        >
+          Department is required
+        </small>
+      }
+
+    </div>
+
+    <!-- Fleet -->
+    <div class="flex flex-col">
+      <label class="text-gray-400 mb-2">Fleet</label>
+      <p-select
+        [options]="fleets"
+        class="w-full bg-[#1F1D2B] border-none text-white placeholder:text-gray-500 rounded-md p-3"
+        formControlName="fleet"
+        optionLabel="label"
+        optionValue="value"
+      />
+    </div>
+  </form>
+</div>

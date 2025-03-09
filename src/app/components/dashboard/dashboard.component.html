@@ -1,0 +1,191 @@
+<div class="grid grid-cols-[repeat(auto-fit,_minmax(180px,_1fr))]
+gap-[15px] mb-8">
+  <!-- Progress Cards -->
+  @for (card of progressCards; track card.label) {
+    <div
+      class="bg-[#1F1D2B] rounded-[15px] gap-[5px] text-center min-h-[250px] min-w-[160px] flex flex-col justify-center grow">
+      <svg class="w-[100px] h-[100px] mx-auto mb-4" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" stroke-width="8" stroke="#1F1D2B" fill="none"></circle>
+        <circle [attr.stroke-dashoffset]="calculateDashOffset(card.percentage)" transform="rotate(270 50 50)"
+                stroke-dasharray="251.2" cx="50" cy="50" r="40" stroke-width="8" stroke="#00e6ff" fill="none"
+                stroke-linecap="round" class="progress-circle"></circle>
+        <text x="50" y="60" font-size="24" text-anchor="middle" fill="#00e6ff"
+              class="percentage-text">{{ card.percentage }}%
+        </text>
+      </svg>
+      <h3 class="text-2xl text-white mb-2">{{ card.value }}</h3>
+      <p class="text-gray-400">{{ card.label }}</p>
+    </div>
+  }
+
+  <!-- statuses Cards -->
+  @for (status of statuses; track status.label) {
+    <div
+      class="bg-[#1F1D2B99]/60 rounded-[15px] p-[15px] gap-[5px] text-center lg:min-h-[250px] min-w-[160px] flex flex-col justify-center grow">
+      <h3 class="text-2xl text-white mb-2">{{ status.value }}</h3>
+      <p class="text-gray-400">{{ status.label }}</p>
+    </div>
+  }
+
+  <!-- totals Cards -->
+  @for (total of totals; track total.label) {
+    <div
+      class="bg-[#1F1D2B59]/35  rounded-[15px] p-[15px] gap-[5px] text-center lg:min-h-[250px] min-w-[160px] flex flex-col justify-center grow">
+      <h3 class="text-2xl text-white mb-2">{{ total.value }}</h3>
+      <p class="text-gray-400">{{ total.label }}</p>
+    </div>
+  }
+</div>
+<div class="lg:hidden flex flex-wrap mx-6 mb-6">
+  <div
+    class="flex rounded-[15px] p-[15px] gap-[5px] grow">
+    <div class="bg-[#1F1D2B]/15 rounded-lg p-6 text-center grow">
+      <h1 class="text-2xl font-bold text-white">43,303 km</h1>
+      <p class="text-gray-400">Total Distance Driven</p>
+    </div>
+  </div>
+  <div
+    class="flex rounded-[15px] p-[15px] gap-[5px] grow">
+    <div class="bg-[#1F1D2B]/15 rounded-lg p-6 text-center grow">
+      <h1 class="text-2xl font-bold text-white">291 hr : 23 min</h1>
+      <p class="text-gray-400">Total Hours Driven</p>
+    </div>
+  </div>
+</div>
+
+<div class="flex gap-3 items-center justify-between mb-6">
+  <p-iconfield class="w-full">
+    <p-inputicon styleClass="icid-search"/>
+    <input pInputText placeholder="Search" type="text"/>
+  </p-iconfield>
+  <div>
+    <div class="flex items-center gap-3">
+      <button class="flex"><i class="icid-export mx-2"></i>
+        <span class="hidden lg:flex">Export</span>
+      </button>
+      <button class="flex"><i class="icid-import mx-2"></i>
+        <span class="hidden lg:flex">Import</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="flex items-center mb-6">
+  <i class="icid-shift text-3xl"></i>
+  <div class="flex flex-col gap-1 mx-4">
+    <div class="text-sm text-[#CECBDE] font-bold">Afternoon Shift</div>
+    <div class="text-sm text-[#CECBDE] ">12:00 PM - 08:00 PM</div>
+  </div>
+
+</div>
+
+<div class="mb-6">
+  <p-table
+    [globalFilterFields]="['vehicle', 'plateNum', 'status']" [reorderableColumns]="true" [value]="vehicles"
+    class="custom-datatable">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="vehicle">Vehicle
+          <p-sortIcon field="vehicle"></p-sortIcon>
+        </th>
+        <th pSortableColumn="plateNum">Plate Num.
+          <p-sortIcon field="plateNum"></p-sortIcon>
+        </th>
+        <th>Odometer
+        </th>
+        <th>GPS
+        </th>
+        <th>Device
+        </th>
+        <th>SIM
+        </th>
+        <th>Fleet
+        </th>
+        <th>Status</th>
+      </tr>
+    </ng-template>
+    <ng-template let-vehicle pTemplate="body">
+      <tr>
+        <td>
+        <span
+          class="border border-[#9E9BAD] rounded-md p-1">{{ vehicle.vehicleType }}</span><span
+          class="underline mx-2">{{ vehicle.vehicle }}</span>
+        </td>
+        <td>{{ vehicle.plateNum }}</td>
+        <td>{{ vehicle.odometer }}</td>
+        <td>{{ vehicle.gps }}</td>
+        <td>
+          <i class="icid-lightning text-md text-[#4DBF77] shadow-custom"></i>
+
+          {{ vehicle.device }}
+        </td>
+        <td>{{ vehicle.sim }}</td>
+        <td><span class="text-[#9E9BAD]">{{ vehicle.fleet }}</span></td>
+        <td>{{ vehicle.status }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<div class="w-full py-10">
+  <div class="border-b-1 border-dashed border-[#464353]"></div>
+</div>
+
+<div class="flex items-center mb-6">
+  <i class="icid-shift text-3xl"></i>
+  <div class="flex flex-col gap-1 mx-4">
+    <div class="text-sm text-[#CECBDE] font-bold">Afternoon Shift</div>
+    <div class="text-sm text-[#CECBDE] ">12:00 PM - 08:00 PM</div>
+  </div>
+
+</div>
+
+<div class="mb-6">
+  <p-table
+    [globalFilterFields]="['vehicle', 'plateNum', 'status']" [reorderableColumns]="true" [value]="vehicles"
+    class="custom-datatable">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="vehicle">Vehicle
+          <p-sortIcon field="vehicle"></p-sortIcon>
+        </th>
+        <th pSortableColumn="plateNum">Plate Num.
+          <p-sortIcon field="plateNum"></p-sortIcon>
+        </th>
+        <th>Odometer
+        </th>
+        <th>GPS
+        </th>
+        <th>Device
+        </th>
+        <th>SIM
+        </th>
+        <th>Fleet
+        </th>
+        <th>Status</th>
+      </tr>
+    </ng-template>
+    <ng-template let-vehicle pTemplate="body">
+      <tr>
+        <td>
+        <span
+          class="border border-[#9E9BAD] rounded-md p-1">{{ vehicle.vehicleType }}</span><span
+          class="underline mx-2">{{ vehicle.vehicle }}</span>
+        </td>
+        <td>{{ vehicle.plateNum }}</td>
+        <td>{{ vehicle.odometer }}</td>
+        <td>{{ vehicle.gps }}</td>
+        <td>
+          <i class="icid-lightning text-md text-[#4DBF77] shadow-custom"></i>
+
+          {{ vehicle.device }}
+        </td>
+        <td>{{ vehicle.sim }}</td>
+        <td><span class="text-[#9E9BAD]">{{ vehicle.fleet }}</span></td>
+        <td>{{ vehicle.status }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

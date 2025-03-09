@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+/*========   General ==================================== */
+html, body {
+  height: 100% !important;
+  background-color: #252836 !important;
+  box-sizing: border-box !important;
+
+
+  /* Customize input styles */
+
+  .p-iconfield {
+    .p-inputicon {
+      color: #CECBDE;
+      padding: 0 10px !important;
+
+    }
+
+    input {
+      padding: 0 60px !important;
+    }
+  }
+
+
+  input {
+    width: 100% !important;
+    height: 56px !important;
+    border-radius: 10px !important;
+    background-color: #1F1D2B !important;
+    border: unset !important;
+    padding: 8px 20px !important;
+
+  }
+
+  p-inputtext, p-dropdown {
+    height: 56px !important;
+  }
+
+  .p-inputtext::placeholder {
+    color: #706D7E;
+  }
+
+  button {
+    height: 2.5rem !important;
+    border-radius: 10px !important;
+    background-color: #252836 !important;
+    padding: 8px 16px !important;
+    box-shadow: 0 1px 1px 0 rgba(2, 0, 23, 0.6) !important;
+  }
+
+  .cancel-button {
+    height: 2.5rem !important;
+    border: unset !important;
+    border-radius: 10px !important;
+    background-color: transparent !important;
+    padding: 8px 16px !important;
+    box-shadow: unset !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .save-button {
+    height: 2.5rem !important;
+    border: unset !important;
+    border-radius: 10px !important;
+    background-color: #60BE7A !important;
+    color: #1E1E1E !important;
+    padding: 8px 16px !important;
+    box-shadow: unset !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* General Styles */
+
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  /* Custom DataTable Styles */
+
+  .custom-datatable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1a1a1a;
+    color: #d0d0d0;
+  }
+
+  .custom-datatable .p-datatable-header,
+  .custom-datatable .p-datatable-footer {
+    display: none; /* Hide default header and footer */
+  }
+
+  .custom-datatable .p-datatable-thead > tr > th,
+  .custom-datatable .p-datatable-tbody > tr > td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #464353;
+  }
+
+  .custom-datatable .p-datatable-thead > tr > th {
+    background-color: #1F1D2B;
+    color: #9E9BAD;
+    padding: 15px;
+    height: 51px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .custom-datatable .p-datatable-tbody > tr > td {
+    padding: 15px;
+    height: 72px;
+    background-color: #252836;
+    color: #CECBDE;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .shadow-custom {
+    filter: drop-shadow(0 0 5px #4dbf77);
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(70, 67, 83, 1);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(31, 29, 43, 1);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 20, 26, 1);
+}
+
+.uploader {
+  .p-fileupload-choose-button {
+    color: #CECBDE !important;
+    padding: 10px 15px !important;
+    height: 60px !important;
+    background: #1F1D2B !important;
+    border: unset !important;
+    border-radius: 10px !important;
+    box-shadow: 0px 1px 1px 0px rgba(2, 0, 23, 0.6) !important;
+
+    .p-button-label {
+      margin: 8px;
+    }
+  }
+
+  .p-fileupload-basic {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.p-select {
+  width: 100% !important;
+  height: 56px !important;
+  border-radius: 10px !important;
+  background-color: #1F1D2B !important;
+  border: unset !important;
+}
+
+.p-select .p-select-label {
+  color: #706d7e !important;
+}
+
+.p-select-panel {
+  background-color: #10141A !important;
+  color: white !important;
+}
+
+.p-select .p-select-trigger {
+  color: #706d7e !important;
+}
+
+.p-button-outlined {
+  border: 1px solid #706d7e !important;
+}
+
+.p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-slider {
+  background: #00C5D6 !important;
+  border-color: #00C5D6 !important;
+}
+
+.link-active {
+  span {
+    color: #00C5D6 !important;
+  }
+
+  i {
+    background: #00C5D6 !important;
+    color: #252836 !important;
+  }
+}
