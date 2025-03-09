@@ -1,11 +1,16 @@
+@import url(./assets/fonts/Poppins/stylesheet.css);
 @import "tailwindcss";
 
-/*========   General ==================================== */
+@theme {
+  --font-Poppins: "Poppins";
+}
+
+
 html, body {
   height: 100% !important;
   background-color: #252836 !important;
   box-sizing: border-box !important;
-
+  font-family: 'Poppins', serif;
 
   /* Customize input styles */
 
@@ -77,9 +82,6 @@ html, body {
 
   /* General Styles */
 
-  body {
-    font-family: Arial, sans-serif;
-  }
 
   /* Custom DataTable Styles */
 
